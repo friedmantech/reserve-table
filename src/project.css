@@ -1,0 +1,160 @@
+body {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+h1 {
+    font-size: 1.7rem;
+    color:#f4ce14;
+    font-family: Markazi, serif;
+}
+
+h2 {
+    font-family: Karla, sans-serif;
+    font-size: 1.4rem;
+    color:#edefee;
+}
+
+h3 {
+    font-family: Karla, sans-serif;
+    font-size:1.2rem;
+}
+
+header li {
+    display: inline-block;
+    padding: 1rem;
+}
+
+header a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header, .heroArea, .specialsArea, .testimonialArea, .aboutArea, footer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.heroText, .heroImg {
+    flex: 1 1 40%;
+    margin-bottom: 1rem;
+}
+.heroText {
+    padding: 1rem 3rem;
+    color: #edefee;
+}
+.heroImg {
+    max-width: 100%;
+}
+
+.specialsHeaderArea {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.specialsHeaderArea h2 {
+    display: inline;
+    color: #333;
+}
+
+.specialsHeaderArea button {
+    float: right;
+}
+
+.specialsArea {
+    padding-bottom: 3rem;
+    gap: 3%;
+}
+
+.specialsArea article {
+    flex: 0 0 20%;
+    margin-bottom: 2rem;
+}
+.specialsArea img.special {
+    display: block;
+    border-radius: 16pt 16pt 0 0;
+}
+
+.specialsDetail {
+    background-color: #d9d9d9;
+    padding: 1.5rem;
+}
+
+.specialsArea .orderIcon {
+    width: 30px;
+    vertical-align: middle;
+    margin-left: .5rem;
+}
+
+.specialsArea h3 {
+    display: inline;
+}
+
+.specialsArea .price {
+   float: right;
+}
+
+.testimonialsHeader {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.testimonialArea article {
+    flex: 0 0 20%;
+}
+
+.testimonial b {
+    line-height: 7rem;
+    vertical-align: top;
+}
+
+.aboutArea {
+    margin-top: 4rem;
+    margin-bottom: 12rem;
+    gap:3%;
+}
+
+.aboutArea h2,h3 {
+    color: #333;
+}
+
+.aboutArea article {
+    flex: 1 1 30%;
+}
+
+.aboutPic1 {
+    position:relative;
+    top: 10rem;
+    left: 5rem;
+}
+
+button {
+    background-color: #f4ce14;
+    color: #333;
+    font-weight: bold;
+    width: 10rem;
+    height:2.5rem;
+    border:none;
+    border-radius: 5px;
+}
+
+.highlight {
+   background-color: #495e57;
+}
+
+footer img {
+    max-height: 78px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+footer, footer a, footer h3, .testimonialArea, .testimonialArea h3 {
+    color:#edefee;
+}

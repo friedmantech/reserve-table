@@ -1,9 +1,11 @@
 
-import logo from  "./Logo.svg"
+import logo from  "./images/Logo.svg"
+import logoLight from  "./images/logo-light.jpg"
 
 function Footer() {
-    return <footer>
-        <img src = {logo} alt = "Logo" />
+    return (<footer className = "highlight">
+        <img src = {logoLight} alt = "Logo" />
+        <section>
         <h3>Doormat Navigation</h3>
         <nav>
     <ul>
@@ -15,19 +17,25 @@ function Footer() {
         <li><a href = "#">Login</a></li>
     </ul>
     </nav>
+    </section>
+    <section>
     <h3>Contact</h3>
     <ul>
         <li>Address</li>
         <li>Phone</li>
         <li>Email</li>
     </ul>
+    </section>
+    <section>
     <h3>Social Media Links</h3>
     <ul>
         <li>Address</li>
         <li>Phone</li>
         <li>Email</li>
     </ul>
-    </footer>;
+    </section>
+    </footer>
+    );
 }
 
 export default Footer;
