@@ -1,11 +1,13 @@
-
 import logo from "./images/Logo.svg"
 import Nav from "./Nav"
 
 function Header() {
-    return <header>
+    return (<>
+    <header>
         <img src = {logo} alt = "Logo" /><Nav />
-    </header>;
+    </header>
+    </>
+    );
 }
 
 export default Header;

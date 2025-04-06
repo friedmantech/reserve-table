@@ -158,3 +158,43 @@ footer img {
 footer, footer a, footer h3, .testimonialArea, .testimonialArea h3 {
     color:#edefee;
 }
+
+.bookingForm {
+    display: grid;
+    max-width: 300px;
+    gap: 8px;
+    margin: 5rem auto;
+    padding: 1rem;
+    background-color: #f4ce14;
+    border: 1px solid #333;
+    border-radius: 8pt;
+}
+
+label {
+    font-weight: bold;
+}
+
+.bookingForm input, .bookingForm select, .bookingForm button {
+    height: 2rem;
+    border-radius: 4pt;
+    border: 2px solid #000;
+}
+
+.bookingForm button {
+    font-family: Karla, sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 8pt 16pt;
+    background-color: #f4ce14;
+    color: #000;
+    border-radius: 16pt;
+    min-height: 3rem;
+    width: auto;
+}
+
+.bookingForm button:hover {
+    color:#f4ce14;
+    background-color: #000;
+    cursor: pointer;
+}
