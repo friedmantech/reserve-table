@@ -48,10 +48,9 @@ function Main() {
         return fetchAPI(new Date(date.d));
     }
 
-    function submitForm (e, formData) {
+    function submitForm (e) {
         e.preventDefault();
-        //const formData = new FormData(e.target); //alert(formData);
-        if (submitAPI(formData)) navigate("/confirm");
+        if (submitAPI(e.target.element)) navigate("/confirm");
     }
 
     const [availableTimes, dispatch] = useReducer(updateTimes,new Date(),initializeTimes);

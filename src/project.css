@@ -163,7 +163,7 @@ footer, footer a, footer h3, .testimonialArea, .testimonialArea h3 {
     display: grid;
     max-width: 300px;
     gap: 8px;
-    margin: 5rem auto;
+    margin: auto auto 3rem;
     padding: 1rem;
     background-color: #f4ce14;
     border: 1px solid #333;
@@ -178,6 +178,10 @@ label {
     height: 2rem;
     border-radius: 4pt;
     border: 2px solid #000;
+}
+
+.bookingForm input:focus, .bookingForm select:focus, .bookingForm button:focus {
+    border-width: 4px;
 }
 
 .bookingForm button {
@@ -197,4 +201,31 @@ label {
     color:#f4ce14;
     background-color: #000;
     cursor: pointer;
+}
+
+button:disabled, button:disabled:hover {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
+
+.formHeader {
+    color: #333;
+    text-align: center;
+}
+
+.bookingConfirm {
+    color:#333;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+}
+
+.fieldError {
+    background-color:lightsalmon;
 }

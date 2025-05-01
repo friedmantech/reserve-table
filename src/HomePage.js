@@ -50,9 +50,9 @@ function SpecialsArea() {
         }
     ];
 
-    const specialsJSX = specials.map(special => {
+    const specialsJSX = specials.map((special, index) => {
         const item =
-        <article>
+        <article key = {index}>
         <img src = {special.image} alt = {special.name} className="special" />
         <div className="specialsDetail"><h3>{special.name}</h3><span className = "price">${special.price}</span>
         <p className="specialsText">{special.description}</p>
@@ -77,7 +77,7 @@ function SpecialsArea() {
 
 function TestimonialsArea() {
     return (
-        <div class = "highlight"><h2 className="testimonialsHeader">Testimonials</h2>
+        <div className = "highlight"><h2 className="testimonialsHeader">Testimonials</h2>
         <section className="testimonialArea">
         <article className="testimonial">
         <h3>Excellent Food</h3>

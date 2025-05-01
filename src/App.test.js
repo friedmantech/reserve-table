@@ -18,7 +18,7 @@ test('Renders the available times correctly', () => {
 test('Updates the available times correctly', () => {
   render(<BookingForm />);
 
-  const expectedValue = ["17:00","17:30","20:00","20:30","22:30","23:00", "23:30"];
+  const expectedValue = ["17:00","17:30","18:00","19:00","19:30","20:30","22:30"];
 
   const dateElement = screen.getByLabelText('Choose date');
   fireEvent.change(dateElement, {target: {value: '05/06/2025'}})
@@ -29,9 +29,10 @@ test('Updates the available times correctly', () => {
 })
 
 test('Booking form can be submitted', () => {
-  const handleSubmit = jest.fn();
+  const handleSubmit = jest.fn(e => e.preventDefault());
+  const dispatch = jest.fn();
 
-  render(<BookingForm onSubmit = {handleSubmit} />);
+  render(<BookingForm onSubmit = {handleSubmit} dispatch = {dispatch} />);
 
   const dateElement = screen.getByLabelText('Choose date');
   const timeElement = screen.getByLabelText('Choose time');
@@ -39,16 +40,29 @@ test('Booking form can be submitted', () => {
   const occasionElement = screen.getByLabelText('Occasion');
   const submitButton = screen.getByText('Make Your reservation');
 
-  fireEvent.change(dateElement, {target: {value: '05/09/2025'}})
-  fireEvent.change(timeElement, {target: {value: '20:00'}})
+  fireEvent.change(dateElement, {target: {value: '2025-05-09'}})
+  fireEvent.change(timeElement, {target: {value: '21:30'}})
   fireEvent.change(guestElement, {target: {value: 4}})
   fireEvent.change(occasionElement, {target: {value: 'Anniversary'}})
   fireEvent.click(submitButton);
-
   expect(handleSubmit).toHaveBeenCalled();
 })
 
+test('HTML5 validation is correct', () => {
+  render(<BookingForm />);
+  const guestElement = screen.getByLabelText('Number of guests');
+  expect(guestElement).toHaveAttribute('min', '1');
+  expect(guestElement).toHaveAttribute('max', '10');
+})
 
-
-
-
+test('Javascript validation is correct', () => {
+  const dispatch = jest.fn();
+  render(<BookingForm dispatch = {dispatch}  />);
+  const dateElement = screen.getByLabelText('Choose date');
+  const submitButton = screen.getByText('Make Your reservation');
+  expect(submitButton).toBeDisabled();
+  fireEvent.change(dateElement, {target: {value: '2025-05-10'}})
+  expect(submitButton).toBeEnabled();
+  fireEvent.change(dateElement, {target: {value: '2025-04-09'}})
+  expect(submitButton).toBeDisabled();
+})

@@ -2,10 +2,20 @@ import { useState } from "react";
 
 function BookingForm(props) {
 
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState({
+        value: '',
+        isTouched: false,
+    });
     const [time, setTime] = useState('');
     const [guests, setGuests] = useState('');
     const [occasion, setOccasion] = useState('');
+    const today = new Date().toISOString().split('T')[0];
+
+    const DateErrorMessage = () => {
+        return (
+          <span className = "errorMsg">Date should be today or later</span>
+        );
+    };
 
     const seededRandom = function (seed) {
         var m = 2**35 - 31;
@@ -40,10 +50,19 @@ function BookingForm(props) {
         return <option key = {index} value = {availTime}>{availTime}</option>;
     })
 
+    function validateForm() {
+        return date.value >= today;
+    }
+
     return (
+     <>
+     <h1 className = "formHeader">Book a Table</h1>
      <form className="bookingForm" onSubmit={props.onSubmit}>
      <label htmlFor="res-date">Choose date</label>
-     <input type="date" id="res-date" value = {date} onChange={e => {setDate(e.target.value); props.dispatch({d:e.target.value})}} />
+     <input className = {date.isTouched && date.value < today ? "fieldError" : null} type="date" id="res-date" value = {date.value} onBlur={()=>{setDate({...date, isTouched: true})}} onChange={e => {setDate({...date, value: e.target.value}); props.dispatch({d:e.target.value})}} />
+     {date.isTouched && date.value < today ? (
+             <DateErrorMessage />
+           ) : null}
      <label htmlFor="res-time">Choose time</label>
      <select id="res-time" value = {time} onChange={e=>setTime(e.target.value)}>
      {times}
@@ -55,8 +74,9 @@ function BookingForm(props) {
         <option>Birthday</option>
         <option>Anniversary</option>
      </select>
-     <button type = "submit">Make Your reservation</button>
+     <button aria-label="On Click" type = "submit" disabled = {!validateForm()} >Make Your reservation</button>
   </form>
+  </>
 );
 
 }
