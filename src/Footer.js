@@ -1,5 +1,3 @@
-
-import logo from  "./images/Logo.svg"
 import logoLight from  "./images/logo-light.jpg"
 
 function Footer() {

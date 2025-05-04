@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from './BookingForm';
 
 test('Renders the number of guests label', () => {
-  render(<BookingForm availableTimes = {[]} />);
+  render(<BookingForm />);
   const labelElement = screen.getByText("Number of guests");
   expect(labelElement).toBeInTheDocument();
 })
@@ -16,23 +16,19 @@ test('Renders the available times correctly', () => {
 
 
 test('Updates the available times correctly', () => {
-  render(<BookingForm />);
-
-  const expectedValue = ["17:00","17:30","18:00","19:00","19:30","20:30","22:30"];
-
+  const testDate = '2025-05-08';
+  const dispatch = jest.fn();
+  render(<BookingForm dispatch = {dispatch} />);
   const dateElement = screen.getByLabelText('Choose date');
-  fireEvent.change(dateElement, {target: {value: '05/06/2025'}})
-
-  const timeElement = screen.getByLabelText('Choose time');
-  const times = Array.from(timeElement.options).map(option => option.value);
-  expect(times).toEqual(expectedValue);
+  fireEvent.change(dateElement, {target: {value : testDate}})
+  expect(dispatch).toHaveBeenCalledWith({ d: testDate });
 })
 
 test('Booking form can be submitted', () => {
-  const handleSubmit = jest.fn(e => e.preventDefault());
+  const submitForm = jest.fn(e => e.preventDefault());
   const dispatch = jest.fn();
 
-  render(<BookingForm onSubmit = {handleSubmit} dispatch = {dispatch} />);
+  render(<BookingForm submitForm = {submitForm} dispatch = {dispatch} />);
 
   const dateElement = screen.getByLabelText('Choose date');
   const timeElement = screen.getByLabelText('Choose time');
@@ -45,7 +41,7 @@ test('Booking form can be submitted', () => {
   fireEvent.change(guestElement, {target: {value: 4}})
   fireEvent.change(occasionElement, {target: {value: 'Anniversary'}})
   fireEvent.click(submitButton);
-  expect(handleSubmit).toHaveBeenCalled();
+  expect(submitForm).toHaveBeenCalled();
 })
 
 test('HTML5 validation is correct', () => {

@@ -4,7 +4,7 @@ function BookingPage(props) {
 
     return (
     <>
-        <BookingForm availableTimes = {props.availableTimes} dispatch = {props.dispatch} onSubmit = {props.submitHandler} />
+        <BookingForm availableTimes = {props.availableTimes} dispatch = {props.dispatch} submitForm = {props.submitForm} />
     </>
 );
 

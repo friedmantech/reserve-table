@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {fetchAPI} from "./api";
 
 function BookingForm(props) {
 
@@ -17,47 +18,16 @@ function BookingForm(props) {
         );
     };
 
-    const seededRandom = function (seed) {
-        var m = 2**35 - 31;
-        var a = 185852;
-        var s = seed % m;
-        return function () {
-            return (s = s * a % m) / m;
-        };
-    }
-
-    const fetchAPI = function(date) {
-        let result = [];
-        let random = seededRandom(date.getDate());
-
-        for(let i = 17; i <= 23; i++) {
-            if(random() < 0.5) {
-                result.push(i + ':00');
-            }
-            if(random() < 0.5) {
-                result.push(i + ':30');
-            }
-        }
-        return result;
-    };
-    const submitAPI = function(formData) {
-        return true;
-    };
-
-    const availTimes = props.availableTimes > 0 ? props.availableTimes : fetchAPI(new Date());
+    const availTimes = props.availableTimes ? props.availableTimes : fetchAPI(new Date());
 
     const times = availTimes.map((availTime, index) => {
         return <option key = {index} value = {availTime}>{availTime}</option>;
     })
 
-    function validateForm() {
-        return date.value >= today;
-    }
-
     return (
      <>
      <h1 className = "formHeader">Book a Table</h1>
-     <form className="bookingForm" onSubmit={props.onSubmit}>
+     <form className="bookingForm" onSubmit={props.submitForm}>
      <label htmlFor="res-date">Choose date</label>
      <input className = {date.isTouched && date.value < today ? "fieldError" : null} type="date" id="res-date" value = {date.value} onBlur={()=>{setDate({...date, isTouched: true})}} onChange={e => {setDate({...date, value: e.target.value}); props.dispatch({d:e.target.value})}} />
      {date.isTouched && date.value < today ? (
@@ -74,7 +44,7 @@ function BookingForm(props) {
         <option>Birthday</option>
         <option>Anniversary</option>
      </select>
-     <button aria-label="On Click" type = "submit" disabled = {!validateForm()} >Make Your reservation</button>
+     <button aria-label="On Click" type = "submit" disabled = {date.value < today}>Make Your reservation</button>
   </form>
   </>
 );
